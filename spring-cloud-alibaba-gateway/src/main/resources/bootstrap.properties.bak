@@ -1,0 +1,8 @@
+spring.application.name=cloud-demo-gateway
+spring.cloud.nacos.config.server-addr=localhost:8848
+spring.cloud.nacos.config.extension-configs[0].data-id=cloud-demo-gateway.yaml
+spring.cloud.nacos.config.extension-configs[0].group=cloud
+spring.cloud.nacos.config.extension-configs[0].refresh=true
+spring.cloud.nacos.config.file-extension=yml
+spring.cloud.nacos.config.namespace=test
+spring.cloud.nacos.config.group=cloud

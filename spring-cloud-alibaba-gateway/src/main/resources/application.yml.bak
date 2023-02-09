@@ -1,0 +1,104 @@
+spring:
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        #nacos注册地址
+        server-addr: localhost:8848
+        #注册服务的ip,默认是内网ip,当只需要内网访问时可以注释掉
+#        ip: localhost
+        #命名空间
+        namespace: test
+        group: cloud
+    # 使用 Sentinel 作为熔断器
+    sentinel:
+      transport:
+        port: 18721
+        dashboard: localhost:18080
+    # 路由网关配置
+    gateway:
+      # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          #开启注册中心路由功能
+          enabled: true
+      # 配置路由规则
+      routes:
+        # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+        - id: CLOUD_DEMO_ORDER
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://cloud-demo-order
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates: #断言，满足所有断言，才会进行转发
+            - Path=/order/**
+            - Method=GET,POST # Method 方法谓词，这里是匹配 GET 和 POST 请求
+          filters:
+            - StripPrefix=1 #非真实路由 需要移除x位路由
+        # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
+        - id: CLOUD_DEMO_USER
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://cloud-demo-user
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates: #断言，满足所有断言，才会进行转发
+            - Path=/user/**
+            - Method=GET,POST # Method 方法谓词，这里是匹配 GET 和 POST 请求
+          filters:
+            - StripPrefix=1 #非真实路由 需要移除x位路由
+        - id: CLOUD_DEMO_AUTH
+          # 采用 LoadBalanceClient 方式请求，以 lb:// 开头，后面的是注册在 Nacos 上的服务名
+          uri: lb://cloud-demo-auth
+          # Predicate 翻译过来是“谓词”的意思，必须，主要作用是匹配用户的请求，有很多种用法
+          predicates: #断言，满足所有断言，才会进行转发
+            - Path=/auth/**
+            - Method=GET,POST # Method 方法谓词，这里是匹配 GET 和 POST 请求
+          filters:
+            - StripPrefix=1 #非真实路由 需要移除x位路由
+  # redis配置
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 1
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    # password:
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池最大连接数
+        max-active: 200
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+
+
+server:
+  port: 18087
+
+# 开启 Feign 对 Sentinel 的支持
+feign:
+  sentinel:
+    enabled: true
+
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: satoken
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: true
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
+

@@ -1,0 +1,15 @@
+server:
+  port: 9091
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: test
+        group: cloud
+
+# 开启 Feign 对 Sentinel 的支持
+feign:
+  sentinel:
+    enabled: true

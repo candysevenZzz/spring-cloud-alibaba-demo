@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: cloud-demo-user
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      config:
+        # 配置中心服务地址
+        server-addr: localhost:8848
+        # 指定后缀名
+        file-extension: yml # 文件类型
+        # 指定命名空间
+        namespace: test
+        # 指定所属分组
+        group: cloud
+        # 拓展分组
+        extension-configs[0]:
+          #其中data-id为nacos中配置的Data ID，为dev分组，开启热更新
+          data-id: cloud-demo-user.yaml
+          group: cloud
+          refresh: true
+

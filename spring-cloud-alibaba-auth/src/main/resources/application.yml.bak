@@ -1,0 +1,71 @@
+server:
+  port: 9092
+
+spring:
+  application:
+    name: cloud-demo-auth
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        #nacos注册地址
+        server-addr: localhost:8848
+        #注册服务的ip,默认是内网ip,当只需要内网访问时可以注释掉
+        #        ip: localhost
+        #命名空间
+        namespace: test
+        group: cloud
+      config:
+        # 配置中心服务地址
+        server-addr: localhost:8848
+        # 指定后缀名
+        file-extension: yml # 文件类型
+        # 指定命名空间
+        namespace: test
+        # 指定所属分组
+        group: cloud
+        # 拓展分组
+        extension-configs[0]:
+          #其中data-id为nacos中配置的Data ID，为dev分组，开启热更新
+          data-id: cloud-demo-auth.yaml
+          group: cloud
+          refresh: true
+  # redis配置
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 1
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    # password:
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池最大连接数
+        max-active: 200
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: satoken
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: true
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
