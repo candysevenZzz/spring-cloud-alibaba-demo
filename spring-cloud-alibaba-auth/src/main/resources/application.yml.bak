@@ -52,7 +52,15 @@ spring:
         max-idle: 10
         # 连接池中的最小空闲连接
         min-idle: 0
+  zipkin:
+    discovery-client-enabled: false #不让zipkin注册到nacos
+    base-url: http://localhost:9411 # zipkin服务地址
+    sender:
+      type: web
 
+  sleuth:
+    sampler:
+      probability: 1 # 日志记录采样率，1为100%，默认为0.1即10%
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
 sa-token:
   # token名称 (同时也是cookie名称)

@@ -76,7 +76,15 @@ spring:
         # 连接池中的最小空闲连接
         min-idle: 0
 
+  zipkin:
+    discovery-client-enabled: false #不让zipkin注册到nacos
+    base-url: http://localhost:9411 # zipkin服务地址
+    sender:
+      type: web
 
+  sleuth:
+    sampler:
+      probability: 1 # 日志记录采样率，1为100%，默认为0.1即10%
 server:
   port: 18087
 

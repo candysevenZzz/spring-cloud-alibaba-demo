@@ -3,6 +3,7 @@ package com.cloud.user.service.fegin;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -14,5 +15,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface  OrderFeignService {
 
     @GetMapping(value = "/order/getOrderInfo")
-    public String getOrderInfo(@RequestParam("orderId") String orderId);
+    String getOrderInfo(@RequestParam("orderId") String orderId);
 }

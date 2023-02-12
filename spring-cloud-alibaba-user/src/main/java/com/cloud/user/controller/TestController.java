@@ -43,7 +43,9 @@ public class TestController {
 
     @GetMapping(value = "order")
     public String order(@RequestParam("id") String orderId) {
+        log.info("接收到请求");
         String orderRes = orderFeignService.getOrderInfo(orderId);
+        log.info("转调order服务完成");
         return test() + "...." +orderRes;
     }
 }
