@@ -27,7 +27,11 @@
   
 
 * **spring-cloud-starter-alibaba-nacos-config** nacos配置中心组件
+
+
+* **[spring-cloud-alibaba-demo-mq-starter](https://github.com/candysevenZzz/spring-cloud-alibaba-demo)** 自定义rocketmq starter 实现生产者+消费者组件
   
+
 * **spring-cloud-starter-stream-rocketmq** stream rocketmq组件
   ![img.png](img.png)
   
@@ -42,5 +46,6 @@ spring-cloud-alibaba-demo
 ├── spring-cloud-alibaba-common 公用模块
 ├── spring-cloud-alibaba-gateway 网关
 ├── spring-cloud-alibaba-order 订单模块
+├── spring-cloud-alibaba-mq mq消息模块
 └── spring-cloud-alibaba-user 用户模块
 ````
