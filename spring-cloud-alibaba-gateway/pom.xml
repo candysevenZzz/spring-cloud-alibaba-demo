@@ -14,8 +14,6 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-
-        <spring-cloud-alibaba-common.version>1.0-SNAPSHOT</spring-cloud-alibaba-common.version>
     </properties>
 
     <dependencies>
@@ -23,7 +21,6 @@
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>spring-cloud-alibaba-common</artifactId>
-            <version>${spring-cloud-alibaba-common.version}</version>
         </dependency>
 
         <dependency>
@@ -52,14 +49,12 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
         </dependency>
 
         <!--nacos 服务注册-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
         </dependency>
 
         <dependency>
@@ -82,7 +77,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-            <version>${spring-cloud-starter-bootstrap.version}</version>
         </dependency>
 
         <!--sleuth依赖-->
@@ -101,14 +95,12 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-reactor-spring-boot-starter</artifactId>
-             <version>${sa-token.version}</version>
         </dependency>
 
         <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-dao-redis-jackson</artifactId>
-             <version>${sa-token.version}</version>
         </dependency>
 
         <dependency>

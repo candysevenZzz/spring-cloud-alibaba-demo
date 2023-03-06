@@ -27,6 +27,10 @@
   
 
 * **spring-cloud-starter-alibaba-nacos-config** nacos配置中心组件
+  
+* **spring-cloud-starter-stream-rocketmq** stream rocketmq组件
+  ![img.png](img.png)
+  
 
 --- 
 ### 模块说明

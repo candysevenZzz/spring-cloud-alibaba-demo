@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-demo-user
+    name: cloud-demo-mq
   cloud:
     # 使用 Naoos 作为服务注册发现
     nacos:
@@ -16,6 +16,7 @@ spring:
         # 拓展分组
         extension-configs[0]:
           #其中data-id为nacos中配置的Data ID，为dev分组，开启热更新
-          data-id: cloud-demo-user.yaml
+          data-id: cloud-demo-mq.yaml
           group: cloud
           refresh: true
+
